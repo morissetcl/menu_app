@@ -52,7 +52,7 @@ module Restopolitain
 
       def get_address(address)
         @restaurant.update(address: address)
-        FormatAddressesService.call(@restaurant)
+        FormatAddressesService.new(@restaurant).call
       end
     end
   end

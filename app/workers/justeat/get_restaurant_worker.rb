@@ -8,7 +8,7 @@ module Justeat
     include Sidekiq::Worker
 
     def perform(*_args)
-      pages = (1..19)
+      pages = [1]
       pages.each do |page|
         Justeat::GetRestaurantService.call(page)
         sleep 3 unless Rails.env.test?

@@ -25,5 +25,10 @@ describe Glovo::GetRestaurantMenuGlovoService do
     expect do
       Glovo::GetRestaurantMenuGlovoService.call(restaurant.id, link)
     end.to change(Dish, :count)
+
+    first_dish = Dish.first
+    expect(first_dish.restaurant).to eq restaurant
+    expect(first_dish.price).to eq 25.20
+    expect(first_dish.title).to eq 'Shish Tawook Sandwich'
   end
 end

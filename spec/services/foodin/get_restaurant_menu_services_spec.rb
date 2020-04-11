@@ -25,5 +25,10 @@ describe Foodin::GetRestaurantMenuFoodinService do
     expect do
       Foodin::GetRestaurantMenuFoodinService.call(link, restaurant.id)
     end.to change(Dish, :count)
+
+    first_dish = Dish.first
+    expect(first_dish.restaurant).to eq restaurant
+    expect(first_dish.price).to eq 9.80
+    expect(first_dish.title).to eq 'Salade burratina y jamon Serrano'
   end
 end

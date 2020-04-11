@@ -21,7 +21,7 @@ module Deliveroo
           food_type << a.text
         end
         restaurant.update!(tags: food_type)
-        FormatAddressesService.call(restaurant)
+        FormatAddressesService.new(restaurant).call
       end
 
       def fetch_html(link)

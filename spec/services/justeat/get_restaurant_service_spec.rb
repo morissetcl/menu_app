@@ -15,13 +15,16 @@ describe Justeat::GetRestaurantService do
       .to_return(status: 200, body: reponse_body, headers: {})
   end
 
-  before do
-    stub_restaurant_justeat
-  end
+  before { stub_restaurant_justeat }
 
-  it 'Create a new restaurant and launch new worker' do
+  it 'Extract datas to create restaurants' do
     expect do
       Justeat::GetRestaurantService.call(19)
     end.to change(Restaurant, :count)
+
+    first_restaurant = Restaurant.first
+    expect(first_restaurant.name).to eq 'La Pause Braisée'
+    expect(first_restaurant.street).to eq '64b Rue Jean Jaurès'
+    expect(first_restaurant.source).to eq 'justeat'
   end
 end

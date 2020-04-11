@@ -31,16 +31,9 @@ describe FormatAddressesService do
                         source: 'restopolitain'
   end
 
-  let!(:restaurant_restovisio) do
-    create :restaurant, name: "El Vaco #{rand(8)}",
-                        slug: "el-vaco #{rand(8)}",
-                        address: '17 chemin de Ghesles 59700 Marcq-en-Barœul',
-                        source: 'restovisio'
-  end
-
   context 'With an address from Justeat' do
     it 'Fill address columns cleanly' do
-      FormatAddressesService.call(restaurant_justeat)
+      FormatAddressesService.new(restaurant_justeat).call
       expect(restaurant_justeat.city).to eq 'Montreuil'
       expect(restaurant_justeat.zip_code).to eq '93100'
       expect(restaurant_justeat.street).to eq '1 Avenue Gabriel Péri'
@@ -50,7 +43,7 @@ describe FormatAddressesService do
 
   context 'With an address from Deliveroo' do
     it 'Fill address columns cleanly' do
-      FormatAddressesService.call(restaurant_deliveroo)
+      FormatAddressesService.new(restaurant_deliveroo).call
       expect(restaurant_deliveroo.zip_code).to eq '75014'
       expect(restaurant_deliveroo.street).to eq '1 impasse de la Gaité'
       expect(restaurant_deliveroo.city).to eq 'Paris'
@@ -60,7 +53,7 @@ describe FormatAddressesService do
 
   context 'With an address from Foodin' do
     it 'Fill address columns cleanly' do
-      FormatAddressesService.call(restaurant_foodin)
+      FormatAddressesService.new(restaurant_foodin).call
       expect(restaurant_foodin.zip_code).to eq '72100'
       expect(restaurant_foodin.street).to eq '1 Avenue du Dr Jean Mac'
       expect(restaurant_foodin.city).to eq 'Le Mans'
@@ -70,21 +63,11 @@ describe FormatAddressesService do
 
   context 'With an address from Restopolitain' do
     it 'Fill address columns cleanly' do
-      FormatAddressesService.call(restaurant_restopolitain)
+      FormatAddressesService.new(restaurant_restopolitain).call
       expect(restaurant_restopolitain.zip_code).to eq '81100'
       expect(restaurant_restopolitain.street).to eq '1 place Jean Jaurès'
       expect(restaurant_restopolitain.city).to eq 'Castres'
       expect(restaurant_restopolitain.department).to eq 'Tarn'
-    end
-  end
-
-  context 'With an address from Restovisio' do
-    it 'Fill address columns cleanly' do
-      FormatAddressesService.call(restaurant_restovisio)
-      expect(restaurant_restovisio.zip_code).to eq '59700'
-      expect(restaurant_restovisio.street).to eq '17 chemin de Ghesles'
-      expect(restaurant_restovisio.city).to eq 'Marcq-en-Barœul'
-      expect(restaurant_restovisio.department).to eq 'Nord'
     end
   end
 end

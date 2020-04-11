@@ -7,7 +7,7 @@ module Justeat
         sleep 2 unless Rails.env.test?
         restaurant = Restaurant.find_by(slug: restaurant_slug)
         html_doc = fetch_html(link)
-        GetDishesService.call(html_doc, restaurant)
+        Justeat::GetDishesService.call(html_doc, restaurant)
       end
 
       private

@@ -17,5 +17,10 @@ describe Justeat::GetDishesService do
     expect do
       Justeat::GetDishesService.call(@doc, resto)
     end.to change(Dish, :count)
+    first_dish = Dish.first
+
+    expect(first_dish.restaurant).to eq resto
+    expect(first_dish.price).to eq 7.80
+    expect(first_dish.title).to eq 'Menu Sandwich Chicken'
   end
 end

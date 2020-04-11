@@ -10,9 +10,10 @@ module Justeat
         html_doc = initialize_crawl(page)
         html_doc.css('.restaurantDetails').each do |element|
           get_link_and_name(element)
-          Restaurant.where(name: @name, slug: @name.parameterize,
-                           address: @address, source: 'justeat').first_or_create
-          Justeat::GetRestaurantMenuWorker.perform_async(@link, @name.parameterize)
+          restaurant = Restaurant.where(name: @name, slug: @name.parameterize,
+                                        address: @address, source: 'justeat').first_or_create
+          FormatAddressesService.new(restaurant).call
+          Justeat::GetRestaurantMenuWorker.perform_async(@link, restaurant.slug)
         end
       end
 

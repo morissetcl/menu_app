@@ -14,8 +14,8 @@ module Justeat
       def create_dishes(html_doc, restaurant)
         html_doc.css('.product').each do |element|
           title = element.css('h4').text.strip
-          price = element.css('.price').text
-          description = element.css('.description').text
+          price = element.css('.price').text.strip.split[0].gsub(',', '.')
+          description = element.css('.description').text.strip
           Dish.create!(title: title, restaurant_id: restaurant.id,
                        price: price, description: description)
         end
@@ -28,7 +28,6 @@ module Justeat
           food_type << food.text
         end
         restaurant.update!(tags: food_type)
-        FormatAddressesService.call(restaurant)
       end
     end
   end

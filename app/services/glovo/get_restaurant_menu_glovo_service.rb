@@ -21,7 +21,7 @@ module Glovo
       def create_dishes(html_doc, restaurant)
         html_doc.css('.collection-item').each do |element|
           title = element.css('.title').text.strip
-          price = element.css('.price').text.strip
+          price = element.css('.price').text.strip.split[0].gsub(',', '.')
           Dish.create(title: title, restaurant_id: restaurant.id, price: price)
         end
       end

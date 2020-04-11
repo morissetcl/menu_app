@@ -12,6 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+dump.rdb
 
 # Ignore uploaded files in development
 /storage/*
@@ -20,8 +21,9 @@
 /node_modules
 /yarn-error.log
 
-/public/assets
+/public/*
 .byebug_history
+.env
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
