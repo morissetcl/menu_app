@@ -20,7 +20,7 @@ module Restopolitain
 
           create_dish(dish)
         end
-        address = get_menu_data(link).css('.restaurant__info > p:first > span').text
+        address = get_menu_data(link).css('.restaurant__info > p:first > span').text.strip
         get_address(address)
       end
 

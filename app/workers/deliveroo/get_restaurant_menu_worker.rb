@@ -6,6 +6,7 @@ require 'nokogiri'
 module Deliveroo
   class GetRestaurantMenuWorker
     include Sidekiq::Worker
+    sidekiq_options queue: 'menu_deliveroo'
 
     def perform(link, restaurant_slug)
       Deliveroo::GetRestaurantMenuService.call(link, restaurant_slug)

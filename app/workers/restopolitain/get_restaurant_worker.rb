@@ -6,6 +6,7 @@ require 'nokogiri'
 module Restopolitain
   class GetRestaurantWorker
     include Sidekiq::Worker
+    sidekiq_options queue: 'menu_restopolitain'
 
     def perform(*_args)
       pages = (1..43)

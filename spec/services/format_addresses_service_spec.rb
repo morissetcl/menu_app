@@ -8,7 +8,7 @@ describe FormatAddressesService do
     create :restaurant, name: "El Rancho #{rand(8)}",
                         slug: "el-rancho #{rand(8)}",
                         address: '1 Avenue Gabriel Péri, MONTREUIL 93100',
-                        source: 'deliveroo'
+                        source: 'justeat'
   end
   let!(:restaurant_deliveroo) do
     create :restaurant, name: "El Paco #{rand(8)}",
@@ -27,7 +27,7 @@ describe FormatAddressesService do
   let!(:restaurant_restopolitain) do
     create :restaurant, name: "El Laco #{rand(8)}",
                         slug: "el-laco #{rand(8)}",
-                        address: '1, place Jean Jaurès, 81100 Castres',
+                        address: "2, alle d'Argenson, 86100 Chatellerault",
                         source: 'restopolitain'
   end
 
@@ -64,10 +64,10 @@ describe FormatAddressesService do
   context 'With an address from Restopolitain' do
     it 'Fill address columns cleanly' do
       FormatAddressesService.new(restaurant_restopolitain).call
-      expect(restaurant_restopolitain.zip_code).to eq '81100'
-      expect(restaurant_restopolitain.street).to eq '1 place Jean Jaurès'
-      expect(restaurant_restopolitain.city).to eq 'Castres'
-      expect(restaurant_restopolitain.department).to eq 'Tarn'
+      expect(restaurant_restopolitain.zip_code).to eq '86100'
+      expect(restaurant_restopolitain.street).to eq "2 alle d'Argenson"
+      expect(restaurant_restopolitain.city).to eq 'Chatellerault'
+      expect(restaurant_restopolitain.department).to eq 'Vienne'
     end
   end
 end

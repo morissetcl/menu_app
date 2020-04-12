@@ -6,6 +6,7 @@ require 'nokogiri'
 module Deliveroo
   class GetRestaurantWorker
     include Sidekiq::Worker
+    sidekiq_options queue: 'restaurants_deliveroo'
 
     def perform(*_args)
       DISTRICTS.each do |district|

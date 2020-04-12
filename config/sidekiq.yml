@@ -1,0 +1,30 @@
+:queues:
+  - default
+  - menu_restopolitain
+  - restaurants_restopolitain
+  - restaurants_deliveroo
+  - menu_deliveroo
+  - menu_justeat
+  - restaurants_justeat
+  - menu_foodin
+  - restaurants_foodin
+  - menu_glovo
+  - restaurants_glovo
+
+:limits:
+  default: 5
+  menu_restopolitain: 5
+  restaurants_restopolitain: 5
+  restaurants_deliveroo: 5
+  menu_deliveroo: 5
+  menu_justeat: 5
+  restaurants_justeat: 5
+  menu_foodin: 5
+  restaurants_foodin: 5
+  menu_glovo: 5
+  restaurants_glovo: 5
+
+:schedule:
+  restaurant_init_worker:
+    cron: '5 4 * * sun'   # Runs once per minute
+    class: RestaurantInitWorker

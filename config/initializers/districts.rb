@@ -1,0 +1,2 @@
+DISTRICTS = ['6eme-luxembourg', 'invalides',
+            '8eme-madeleine', '9eme-opera', 'paris-10eme-gare-de-lest', '11eme-oberkampf', 'vincennes-chateau', '13eme-place-ditalie', '14eme-mouton-duvernet', 'Vaugirard', 'Auteuil', 'la-fourche', '18eme-poissionniers', '19eme-jaures', 'porte-de-montreuil', 'saint-cloud-centre-ville', 'paris-la-defense', 'courbevoie-centre', 'chatillon-centre-ville', 'le-kremlin-bicetre', 'creteil-prefecture', 'rueil-malmaison-martinets-gare', 'argenteuil-centre-ville', 'boulogne-billancourt'].freeze

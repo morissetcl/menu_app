@@ -6,6 +6,7 @@ require 'nokogiri'
 module Justeat
   class GetRestaurantWorker
     include Sidekiq::Worker
+    sidekiq_options queue: 'menu_justeat'
 
     def perform(*_args)
       pages = [1]

@@ -6,6 +6,7 @@ require 'nokogiri'
 module Foodin
   class GetRestaurantWorker
     include Sidekiq::Worker
+    sidekiq_options queue: 'restaurants_foodin'
 
     def perform(*_args)
       FOODIN_CITIES.each do |city|
