@@ -19,7 +19,7 @@ describe Justeat::GetRestaurantService do
 
   it 'Extract datas to create restaurants' do
     expect do
-      Justeat::GetRestaurantService.call(19)
+      Justeat::GetRestaurantService.call('https://www.just-eat.fr/livraison/paris/paris/?page=19')
     end.to change(Restaurant, :count)
 
     first_restaurant = Restaurant.first

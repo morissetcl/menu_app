@@ -6,8 +6,8 @@ require 'nokogiri'
 module Justeat
   class GetRestaurantService
     class << self
-      def call(page)
-        html_doc = initialize_crawl(page)
+      def call(link)
+        html_doc = initialize_crawl(link)
         html_doc.css('.restaurantDetails').each do |element|
           get_link_and_name(element)
           restaurant = Restaurant.where(name: @name, slug: @name.parameterize,
@@ -17,8 +17,7 @@ module Justeat
         end
       end
 
-      def initialize_crawl(page)
-        link = "https://www.just-eat.fr/livraison/paris/paris/?page=#{page}"
+      def initialize_crawl(link)
         html_file = URI.parse(link).open
         Nokogiri::HTML(html_file)
       end

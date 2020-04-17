@@ -9,9 +9,9 @@ module Justeat
     sidekiq_options queue: 'menu_justeat'
 
     def perform(*_args)
-      pages = [1]
-      pages.each do |page|
-        Justeat::GetRestaurantService.call(page)
+      cities = JUSTEAT_CITIES + PARIS
+      cities.each do |link|
+        Justeat::GetRestaurantService.call(link)
         sleep 3 unless Rails.env.test?
       end
     end

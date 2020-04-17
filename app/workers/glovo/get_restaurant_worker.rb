@@ -9,8 +9,9 @@ module Glovo
     sidekiq_options queue: 'restaurants_glovo'
 
     def perform(*_args)
-      paris = 'https://glovoapp.com/fr/par/category/RESTAURANT'
-      Glovo::GetRestaurantGlovoService.call(paris)
+      GLOVO_CITIES.each do |city|
+        Glovo::GetRestaurantGlovoService.call(city)
+      end
     end
   end
 end
