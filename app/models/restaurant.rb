@@ -3,7 +3,7 @@
 class Restaurant < ApplicationRecord
   has_many :dishes
 
-  validates :name, :slug, uniqueness: true
+  validates :name, uniqueness: true
 
   def from_justeat?
     source == 'justeat'
