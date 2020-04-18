@@ -48,6 +48,9 @@ group :test do
   gem 'guard-rspec', require: false
   gem 'guard-rubocop'
   gem 'mocha'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rspec-sidekiq'
   gem 'selenium-webdriver'
