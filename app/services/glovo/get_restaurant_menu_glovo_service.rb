@@ -22,7 +22,7 @@ module Glovo
         html_doc.css('.collection-item').each do |element|
           title = element.css('.title').text.strip
           price = element.css('.price').text.strip.split[0].gsub(',', '.')
-          Dish.create(title: title, restaurant_id: restaurant.id, price: price)
+          Dish.where(title: title, restaurant_id: restaurant.id, price: price).first_or_create
         end
       end
     end

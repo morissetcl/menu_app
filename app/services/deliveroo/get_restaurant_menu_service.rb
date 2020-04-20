@@ -38,7 +38,7 @@ module Deliveroo
         html_doc.css('.menu-index-page__item-content').each do |element|
           title = element.css('.menu-index-page__item-title').text
           price = element.css('.menu-index-page__item-price').text
-          Dish.create(title: title, restaurant_id: restaurant.id, price: price)
+          Dish.where(title: title, restaurant_id: restaurant.id, price: price).first_or_create
         end
       end
     end

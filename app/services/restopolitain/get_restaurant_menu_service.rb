@@ -47,7 +47,7 @@ module Restopolitain
       end
 
       def create_dish(dish)
-        Dish.create!(restaurant_id: @restaurant.id, title: dish.text)
+        Dish.where(restaurant_id: @restaurant.id, title: dish.text).first_or_create
       end
 
       def get_address(address)

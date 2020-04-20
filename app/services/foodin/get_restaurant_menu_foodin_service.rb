@@ -31,10 +31,10 @@ module Foodin
         title = restaurant.css('.title-cart-block').text.strip
         description = restaurant.css('.discription-cart-block').text.strip
         price = restaurant.css('.price-plat').text.strip
-        Dish.create(title: title,
-                    description: description,
-                    restaurant_id: restaurant_id,
-                    price: price)
+        Dish.where(title: title,
+                   description: description,
+                   restaurant_id: restaurant_id,
+                   price: price).first_or_create
       end
     end
   end

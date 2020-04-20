@@ -16,8 +16,8 @@ module Justeat
           title = element.css('h4').text.strip
           price = element.css('.price').text.strip.split[0].gsub(',', '.')
           description = element.css('.description').text.strip
-          Dish.create!(title: title, restaurant_id: restaurant.id,
-                       price: price, description: description)
+          Dish.where(title: title, restaurant_id: restaurant.id,
+                     price: price, description: description).first_or_create
         end
       end
 
