@@ -11,12 +11,19 @@ jobs:
           PGHOST: 127.0.0.1
           PGUSER: circleci-demo-ruby
           RAILS_ENV: test
+          AMQP_URL: amqp://localhost:5672
       - image: circleci/postgres:9.5-alpine
         environment:
           POSTGRES_USER: circleci-demo-ruby
           POSTGRES_DB: rails_blog
           POSTGRES_PASSWORD: ""
-    working_directory: ~/circleci-demo-workflows
+      - image: redis@sha256:54057dd7e125ca41afe526a877e8bd35ec2cdd33b9217e022ed37bdcf7d09673
+      - image: rabbitmq:3.5.4
+        environment:
+          AMQP_URL: amqp://localhost:5672
+    working_directory: ~/circleci-demo-workflow
+    services:
+      - rabbitmq-server
     steps:
       - checkout
       - run:
