@@ -2,6 +2,7 @@
 
 class Restaurant < ApplicationRecord
   has_many :dishes
+  after_create { publish_to_dashboard }
 
   validates :name, uniqueness: true
 
@@ -23,5 +24,11 @@ class Restaurant < ApplicationRecord
 
   def from_restopolitain?
     source == 'restopolitain'
+  end
+
+  private
+
+  def publish_to_dashboard
+    Publisher.publish('restaurants', attributes)
   end
 end
