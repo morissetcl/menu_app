@@ -63,3 +63,18 @@ jobs:
       - run:
           name: Run rspec in parallel
           command: bundle exec rspec --profile
+
+  deploy:
+      machine:
+        enabled: true
+      working_directory: ~/circleci-demo-workflows
+      environment:
+        HEROKU_APP: "menuapp-crawler"
+      steps:
+        - checkout
+        - run:
+            name: Deploy Master to Heroku
+            command: git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/menuapp-crawler.git master
+        - run:
+            name: Heroku Migrate
+            command: heroku run rake db:migrate --app menuapp-crawler
