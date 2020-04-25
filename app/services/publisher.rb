@@ -3,9 +3,8 @@
 require 'bunny'
 
 class Publisher
-  RABBIMQ_URL = ENV.fetch('RABBITMQ_URL', 'amqp://localhost:5672')
   def self.publish(exchange, message = {})
-    x = channel.fanout("crawler.#{exchange}")
+    x = channel.fanout("crawler.#{exchange}", auto_delete: true)
     x.publish(message.to_json)
   end
 
@@ -14,6 +13,9 @@ class Publisher
   end
 
   def self.connection
-    @connection ||= Bunny.new(RABBIMQ_URL).tap(&:start)
+    @connection ||= Bunny.new(username: RABBITMQ_USERNAME,
+                              password: RABBITMQ_PASSWORD,
+                              vhost: RABBITMQ_VHOST)
+                         .tap(&:start)
   end
 end
