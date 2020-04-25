@@ -2,7 +2,7 @@
 
 class Restaurant < ApplicationRecord
   has_many :dishes
-  after_create { publish_to_dashboard }
+  after_save { publish_to_dashboard }
 
   validates :name, uniqueness: true
 
