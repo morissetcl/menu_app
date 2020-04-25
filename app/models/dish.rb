@@ -9,6 +9,6 @@ class Dish < ApplicationRecord
   private
 
   def publish_to_dashboard
-    Publisher.publish('dishes', attributes)
+    Publisher.publish('dishes', attributes) unless Rails.env.test?
   end
 end

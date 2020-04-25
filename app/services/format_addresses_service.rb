@@ -18,9 +18,9 @@ class FormatAddressesService
     return if restaurant.address.nil?
     return if need_to_be_update?
 
-    if restaurant.from_foodin?
+    if restaurant.from('foodin')
       fill_address_column_cleanly_foodin
-    elsif restaurant.from_restopolitain?
+    elsif restaurant.from('restopolitain')
       fill_address_column_cleanly_restopolitain
     else
       fill_address_column_cleanly
@@ -29,8 +29,8 @@ class FormatAddressesService
 
   def retrieve_city(zip_code)
     address_split = address.delete(zip_code).split(',')
-    return address_split[-1] if restaurant.from_justeat?
-    return address_split[1] if restaurant.from_deliveroo?
+    return address_split[-1] if restaurant.from('justeat')
+    return address_split[1] if restaurant.from('deliveroo')
 
     ''
   end
