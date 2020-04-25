@@ -14,5 +14,6 @@ class Restaurant < ApplicationRecord
 
   def publish_to_dashboard
     Publisher.publish('restaurants', attributes) unless Rails.env.test?
+    Accounting.first.increment!(:restaurant_count)
   end
 end
