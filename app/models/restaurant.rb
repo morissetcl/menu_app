@@ -6,29 +6,14 @@ class Restaurant < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  def from_justeat?
-    source == 'justeat'
-  end
-
-  def from_deliveroo?
-    source == 'deliveroo'
-  end
-
-  def from_foodin?
-    source == 'foodin'
-  end
-
-  def from_glovo?
-    source == 'glovo'
-  end
-
-  def from_restopolitain?
-    source == 'restopolitain'
+  def from(source_name)
+    source == source_name
   end
 
   private
 
   def publish_to_dashboard
-    Publisher.publish('restaurants', attributes)
+    Publisher.publish('restaurants', attributes) unless Rails.env.test?
+    Accounting.first.update(restaurant_count: Accounting.first.restaurant_count + 1)
   end
 end

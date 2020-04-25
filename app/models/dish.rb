@@ -9,6 +9,7 @@ class Dish < ApplicationRecord
   private
 
   def publish_to_dashboard
-    Publisher.publish('dishes', attributes)
+    Publisher.publish('dishes', attributes) unless Rails.env.test?
+    Accounting.first.update(dish_count: Accounting.first.dish_count + 1)
   end
 end
