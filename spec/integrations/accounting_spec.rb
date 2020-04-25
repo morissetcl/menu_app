@@ -15,13 +15,13 @@ describe Accounting, type: :model do
     it 'when new dish is saved' do
       expect do
         create :dish
-      end.to change{accounting.reload.dish_count}.by(1)
+      end.to change { accounting.reload.dish_count }.by(1)
     end
 
     it 'when new restaurant is saved' do
       expect do
         create :restaurant
-      end.to change{accounting.reload.restaurant_count}.by(1)
+      end.to change { accounting.reload.restaurant_count }.by(1)
     end
   end
 end
