@@ -7,7 +7,6 @@ class Publisher
   def self.publish(exchange, message = {})
     x = channel.fanout("crawler.#{exchange}")
     x.publish(message.to_json)
-    connection.close
   end
 
   def self.channel
