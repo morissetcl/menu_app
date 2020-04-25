@@ -13,7 +13,9 @@ class Restaurant < ApplicationRecord
   private
 
   def publish_to_dashboard
-    Publisher.publish('restaurants', attributes) unless Rails.env.test?
     Accounting.first.update(restaurant_count: Accounting.first.restaurant_count + 1)
+    return if city.blank? || Rails.env.test?
+
+    Publisher.publish('restaurants', attributes)
   end
 end
