@@ -4,7 +4,7 @@ require 'bunny'
 
 class Publisher
   def self.publish(exchange, message = {})
-    x = channel.fanout("crawler.#{exchange}", auto_delete: true)
+    x = channel.fanout("crawler.#{exchange}")
     x.publish(message.to_json)
   end
 
@@ -13,9 +13,6 @@ class Publisher
   end
 
   def self.connection
-    @connection ||= Bunny.new(username: RABBITMQ_USERNAME,
-                              password: RABBITMQ_PASSWORD,
-                              vhost: RABBITMQ_VHOST)
-                         .tap(&:start)
+    @connection ||= Bunny.new.tap(&:start)
   end
 end
