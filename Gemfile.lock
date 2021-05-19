@@ -138,7 +138,9 @@ GEM
       mimemagic (~> 0.3.2)
     metaclass (0.0.4)
     method_source (1.0.0)
-    mimemagic (0.3.4)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
@@ -164,7 +166,8 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.4)
-    puma (3.12.4)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     raabro (1.1.6)
     rack (2.2.2)
     rack-protection (2.0.7)
@@ -327,7 +330,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-rails
-  puma (~> 3.11)
+  puma (~> 4.3)
   rails (~> 6.0.0)
   rb-readline
   rspec-rails (~> 4.0.0)
